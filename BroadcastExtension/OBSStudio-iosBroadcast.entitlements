@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.g.obsmobile.shared</string>
+		<string>group.com.g.obsstudioios.shared</string>
 	</array>
 </dict>
 </plist>
