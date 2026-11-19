@@ -6,7 +6,7 @@ import VideoToolbox
 /// Receives the system-wide iPhone screen and audio buffers from ReplayKit and
 /// publishes them to the RTMP destination shared by the host app.
 final class SampleHandler: RPBroadcastSampleHandler {
-    private let settings = UserDefaults(suiteName: "group.com.g.obsmobile.shared")
+    private let settings = UserDefaults(suiteName: "group.com.g.obsstudioios.shared")
     private var needsVideoConfiguration = true
     private var rotator: VideoRotator?
     private var assetWriter: AVAssetWriter?
@@ -36,7 +36,7 @@ final class SampleHandler: RPBroadcastSampleHandler {
               ["rtmp", "rtmps"].contains(parts.scheme?.lowercased() ?? ""),
               parts.host != nil else {
             finishBroadcastWithError(NSError(
-                domain: "OBSMobile.Broadcast",
+                domain: "obsstudioios.Broadcast",
                 code: 1,
                 userInfo: [NSLocalizedDescriptionKey: "Configure uma URL RTMP e uma chave de transmissão no app antes de iniciar a captura."]
             ))
@@ -100,7 +100,7 @@ final class SampleHandler: RPBroadcastSampleHandler {
         } else if code == RTMPConnection.Code.connectFailed.rawValue {
             settings?.set(false, forKey: "screenCaptureActive")
             finishBroadcastWithError(NSError(
-                domain: "OBSMobile.Broadcast",
+                domain: "obsstudioios.Broadcast",
                 code: 2,
                 userInfo: [NSLocalizedDescriptionKey: "Falha ao conectar ao servidor RTMP. Verifique a URL, a chave e a rede."]
             ))
@@ -110,7 +110,7 @@ final class SampleHandler: RPBroadcastSampleHandler {
     @objc private func handleRTMPError(_ notification: Notification) {
         settings?.set(false, forKey: "screenCaptureActive")
         finishBroadcastWithError(NSError(
-            domain: "OBSMobile.Broadcast",
+            domain: "obsstudioios.Broadcast",
             code: 3,
             userInfo: [NSLocalizedDescriptionKey: "A conexão RTMP foi interrompida."]
         ))
