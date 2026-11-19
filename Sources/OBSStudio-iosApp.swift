@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct OBSStudioMobileApp: App {
+struct OBSStudioiosApp: App {
     var body: some Scene {
         WindowGroup {
             ObsMobileView()
